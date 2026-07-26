@@ -98,7 +98,7 @@ class MockProvider(BaseLLMProvider):
         # Check domain intents
         if any(w in q_lower for w in ["rate", "rates", "convert", "conversion", "how much", "usd", "inr", "exchange", "val"]):
             agents.append("ExchangeAgent")
-        if any(w in q_lower for w in ["provider", "providers", "cheapest", "compare", "wise", "remitly", "fee", "speed"]):
+        if any(w in q_lower for w in ["provider", "providers", "cheapest", "compare", "wise", "remitly", "western", "union", "fee", "speed", "cash", "pickup", "counter", "branch", "send", "transfer"]):
             agents.append("ProviderAgent")
         if any(w in q_lower for w in ["kyc", "aml", "compliance", "document", "documents", "passport", "id", "require"]):
             agents.append("ComplianceAgent")

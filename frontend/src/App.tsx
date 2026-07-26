@@ -21,6 +21,7 @@ import { LiveExchange } from './pages/LiveExchange';
 import { Compliance } from './pages/Compliance';
 import { TransferTracker } from './pages/TransferTracker';
 import { Settings } from './pages/Settings';
+import { NitroChat } from './pages/NitroChat';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,7 @@ export function App() {
               <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8">
                 <Routes>
                   <Route path="/" element={<LandingPage />} />
+                  <Route path="/chat" element={<NitroChat />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/compare" element={<Compare />} />
                   <Route path="/pipeline" element={<AgentPipeline />} />

@@ -25,6 +25,7 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { name: 'NitroChat', path: '/chat', icon: Bot, badge: 'AI Chat' },
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Compare', path: '/compare', icon: ArrowRightLeft },
     { name: 'AI Pipeline', path: '/pipeline', icon: Bot, badge: 'Main Demo' },

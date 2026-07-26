@@ -61,7 +61,8 @@ _PROVIDER_KEYWORDS: Set[str] = {
     "compare", "comparison", "fee", "fees", "delivery", "speed", "fast",
     "faster", "payout", "payment method", "bank transfer", "cash pickup",
     "mobile money", "fastest", "recommend", "recommendation", "corridor",
-    "who should i use", "which provider",
+    "who should i use", "which provider", "cash", "pickup", "counter", "branch",
+    "send", "transfer", "remit", "option", "urgent",
 }
 
 # Compliance keywords

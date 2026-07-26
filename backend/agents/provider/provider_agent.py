@@ -99,7 +99,8 @@ class ProviderAgent(BaseAgent):
                 f"No providers found for corridor {from_country} → {to_country}"
             )
         else:
-            ranked     = self._rank_providers(providers)
+            query_str = (ctx.raw_query or "").strip()
+            ranked     = self._rank_providers(providers, query=query_str)
             best       = ranked[0] if ranked else None
             data["corridor"]         = f"{from_country} → {to_country}"
             data["all_providers"]    = ranked
@@ -139,17 +140,44 @@ class ProviderAgent(BaseAgent):
     # Private helpers
     # ------------------------------------------------------------------
 
-    def _rank_providers(self, providers: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def _rank_providers(self, providers: List[Dict[str, Any]], query: str = "") -> List[Dict[str, Any]]:
         """
-        Rank providers by (fee_rank, speed_rank).
-        Lower score = better.
+        Rank providers based on user query intent (cash pickup, instant speed, low fees)
+        and baseline fee/speed scores.
         """
+        q_lower = query.lower() if query else ""
+
+        is_cash_requested = any(w in q_lower for w in ["cash", "pickup", "counter", "branch"])
+        is_fast_requested = any(w in q_lower for w in ["urgent", "instant", "fast", "minute", "emergency"])
+
         def score(p: Dict[str, Any]) -> tuple:
+            p_id = str(p.get("provider_id", "")).lower()
+            p_name = str(p.get("provider_name", "")).lower()
+            payouts = [str(m).lower() for m in p.get("payout_methods", [])]
+            payments = [str(m).lower() for m in p.get("payment_methods", [])]
+            speed = str(p.get("delivery_speed", "")).lower()
             fee_model = str(p.get("fee_model", "unknown")).lower().replace(" ", "_")
-            speed     = str(p.get("delivery_speed", "unknown")).lower().replace(" ", "_")
-            fee_score   = _FEE_RANK.get(fee_model, 5)
-            speed_score = _SPEED_RANK.get(speed, 6)
-            return (fee_score, speed_score)
+
+            # Intent boost score (lower is better)
+            intent_penalty = 0
+
+            # If user explicitly asked about a provider by name/id
+            if p_id in q_lower or p_name in q_lower or (p_id == "western_union" and "western" in q_lower):
+                intent_penalty -= 200
+
+            if is_cash_requested:
+                has_cash = any("cash" in m for m in payouts + payments)
+                if not has_cash:
+                    intent_penalty += 100 # Heavily penalize non-cash providers if cash is requested!
+
+            if is_fast_requested:
+                if "minute" in speed or "instant" in speed:
+                    intent_penalty -= 5
+
+            fee_score = _FEE_RANK.get(fee_model, 5)
+            speed_score = _SPEED_RANK.get(speed.replace(" ", "_"), 6)
+
+            return (intent_penalty, fee_score, speed_score)
 
         return sorted(providers, key=score)
 

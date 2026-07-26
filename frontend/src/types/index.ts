@@ -125,3 +125,29 @@ export interface TransferStatusStep {
   status: 'completed' | 'in_progress' | 'pending';
   timestamp?: string;
 }
+
+export interface AgentPlanStep {
+  agent: string;
+  reason: string;
+  priority: number;
+  status?: 'completed' | 'running' | 'inactive';
+  executionTimeMs?: number;
+}
+
+export interface AgentChatResponse {
+  session_id: string;
+  query: string | any;
+  agents_used: string[];
+  plan: AgentPlanStep[];
+  results: Record<string, { status: string; data: any; execution_ms?: number }>;
+  summary: string;
+  status: string;
+  total_execution_ms: number;
+  metadata?: {
+    planner_name?: string;
+    provider_name?: string;
+    confidence?: number;
+    planning_latency_ms?: number;
+  };
+}
+
