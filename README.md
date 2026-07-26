@@ -38,6 +38,25 @@ The platform delivers transparent, real-time insights before users initiate inte
 
 ---
 
+# 🚀 Powered by NitroStack
+
+RemitWise AI is built on **NitroStack's Model Context Protocol (MCP)**.
+
+NitroStack serves as the AI orchestration layer of our application by enabling multiple specialized AI agents to work together as a unified intelligent system.
+
+### NitroStack Responsibilities
+
+- AI Agent orchestration
+- Model Context Protocol (MCP) server
+- Agent communication
+- Tool execution
+- Intelligent planning
+- Modular AI workflow
+
+Using NitroStack allowed us to build independent AI agents that can communicate, coordinate, and generate explainable recommendations without tightly coupling the application logic.
+
+---
+
 # ❗ Problem Statement
 
 Cross-border money transfers are often difficult because:
@@ -249,16 +268,134 @@ remitwise-ai/
 
 ---
 
-> **The following sections will be added in the next phase:**
+# 🚀 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/A-GOWSHIK/remitwise-ai.git
+
+cd remitwise-ai
+```
+
+---
+
+## Backend Setup
+
+```bash
+cd backend
+
+pip install -r requirements.txt
+
+uvicorn api.app:app --reload
+```
+
+Backend runs at
+
+```
+http://localhost:8000
+```
+
+---
+
+## Frontend Setup
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+Frontend runs at
+
+```
+http://localhost:5173
+```
+
+---
+
+# ⚙ Environment Variables
+
+Create a `.env` file from `.env.example`.
+
+Example:
+
+```env
+LLM_PROVIDER=ollama
+
+
+OLLAMA_MODEL=llama3.1
+
+
+```
+
 >
-> - ⚙️ Prerequisites
-> - 📥 Installation
-> - 🔐 Environment Variables
-> - ▶️ Running the Project
-> - 🌐 API Documentation
-> - ☁️ Deployment
-> - 📸 Screenshots
-> - 🎥 Demo
-> - 🚀 Future Enhancements
-> - 👥 Contributors
-> - 📄 License
+
+---
+
+# 🤖 AI Agents
+
+| Agent | Responsibility |
+|---------|----------------|
+| Planner Agent | Understands user intent and coordinates execution |
+| Exchange Agent | Retrieves live exchange rates and performs conversion |
+| Provider Agent | Compares remittance providers and transfer costs |
+| Compliance Agent | Validates KYC, AML, and country-specific rules |
+| Merger Agent | Combines outputs into a unified recommendation |
+
+---
+
+# 🔌 API Endpoints
+
+| Endpoint | Description |
+|-----------|-------------|
+| `/exchange/latest` | Retrieve latest exchange rate |
+| `/exchange/history` | Historical exchange rate data |
+| `/providers` | List supported remittance providers |
+| `/providers/compare` | Compare provider options |
+| `/compliance` | Compliance verification |
+| `/health` | API health status |
+
+
+---
+
+# 🚀 Deployment
+
+| Component | Platform |
+|------------|----------|
+| Backend & AI Agents | NitroCloud (NitroStack MCP) |
+| Source Code | GitHub |
+
+---
+
+# 🔮 Future Enhancements
+
+- Mobile application
+- Voice-enabled remittance assistant
+- Personalized transfer recommendations
+- Predictive exchange-rate forecasting
+- Multi-language support
+- Additional remittance provider integrations
+
+---
+
+# 👥 Team
+
+**Team Name:** Sambar Spartans
+
+**Project:** RemitWise AI
+
+**Hackathon:** NitroStack × Amrita University Hackathon
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+See the `LICENSE` file for details.
+
+---
+
