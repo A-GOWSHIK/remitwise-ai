@@ -21,9 +21,9 @@ Built using **FastAPI**, **NitroStack SDK**, **Model Context Protocol (MCP)**, *
 - **Official GitHub Repository**: [https://github.com/A-GOWSHIK/remitwise-ai.git](https://github.com/A-GOWSHIK/remitwise-ai.git)
 
 ### Team Members
-1. **A-GOWSHIK** — [@A-GOWSHIK](https://github.com/A-GOWSHIK) (Lead Developer)
-2. **vijay45057** — [@vijay45057](https://github.com/vijay45057) (Core Contributor)
-3. **Kavin-2806** — [@Kavin-2806](https://github.com/Kavin-2806) (Core Contributor)
+1. **A-GOWSHIK** — [@A-GOWSHIK](https://github.com/A-GOWSHIK) 
+2. **vijay45057** — [@vijay45057](https://github.com/vijay45057) 
+3. **Kavin-2806** — [@Kavin-2806](https://github.com/Kavin-2806) 
 
 ---
 
