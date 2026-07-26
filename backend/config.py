@@ -7,6 +7,10 @@ Import `settings` anywhere in the project; do NOT scatter magic strings.
 
 import os
 from typing import List
+from dotenv import load_dotenv
+
+# Load environment variables from .env file if present
+load_dotenv()
 
 
 class Settings:
